@@ -156,11 +156,12 @@ export class ImageUploadComponent implements OnInit, OnChanges {
 
       console.warn(reader);
 
-      reader.addEventListener('load', (event: any) => {
+      reader.onload = (event: any) => {
         const fileHolder: FileHolder = new FileHolder(event.target.result, beforeUploadResult.file);
         this.uploadSingleFile(fileHolder, beforeUploadResult.url, beforeUploadResult.formData);
         this.files.push(fileHolder);
-      }, false);
+      };
+
       reader.readAsDataURL(beforeUploadResult.file);
     }
   }
